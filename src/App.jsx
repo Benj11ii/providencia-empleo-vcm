@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Importar useEffect para controlar la carga de datos
 import './App.css';
-import ServiceCard from './components/ServiceCard/ServiceCard'; // Importamos el componente
-import TestimonialCarousel from './components/TestimonialCarousel/TestimonialCarousel'; // Se importa el carrusel
+import ServiceCard from './components/ServiceCard/ServiceCard';
+import TestimonialCarousel from './components/TestimonialCarousel/TestimonialCarousel';
 
 function App() {
-  // Este estado guarda temporalmente el servicio que el usuario seleccione al hacerr clic
   const [selectedService, setSelectedService] = useState('');
+  
+  // 1. Estado para almacenar los servicios que vendrán de la API
+  const [servicesList, setServicesList] = useState([]);
+  
+  // 2. Estados para el control de carga y posibles errores
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Se simula una lista de servicios reales del Centro de Negocios de SERCOTEC
-  const servicesList = [
-    {
-      id: 1,
-      title: "Asesoría Técnica Individual",
-      description: "Acompañamiento personalizado y confidencial para diagnosticar y mejorar la gestión de tu micro o pequeña empresa.",
-      // Se usa imagen de prueba de internet para ver cómo luce
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=400"
-    },
-    {
-      id: 2,
-      title: "Capacitación Empresarial",
-      description: "Talleres prácticos sobre marketing digital, finanzas, contabilidad y uso de herramientas digitales para emprendedores.",
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=400"
-    }
-  ];
+  // 3. El Hook useEffect ejecuta la petición de forma automática al cargar la página
+  useEffect(() => {
+    // Simular petición HTTP GET a endpoint de prueba
+    fetch('/api/services.json')
+      .then((response) => {
+        // Si la respuesta no es exitosa (ej. error 404), lanzar un error
+        if (!response.ok) {
+          throw new Error('No se pudieron cargar los servicios de la API.');
+        }
+        return response.json(); // Convertir la respuesta a formato JSON
+      })
+      .then((data) => {
+        setServicesList(data); // Guardar los datos en estado
+        setLoading(false);     // Indicar que la carga terminó
+      })
+      .catch((err) => {
+        setError(err.message); // Si hay un error de red,se guarda
+        setLoading(false);
+      });
+  }, []); // El arreglo vacío [] asegura que la petición se haga una sola vez al montar el componente
 
-  // Función de prueba que se ejecuta cuando el usuario hace clic en "Contáctanos"
   const handleSelectService = (serviceTitle) => {
     setSelectedService(serviceTitle);
-    // Mostrar una alerta para comprobar que la tarjeta le envía el dato correcto al padre
-    alert(`¡Perfecto! Has seleccionado: "${serviceTitle}". En los siguientes pasos, este valor pre-llenará el formulario automáticamente.`);
+    alert(`Has seleccionado: "${serviceTitle}".`);
   };
 
   return (
@@ -42,27 +50,32 @@ function App() {
         <section className="services-section">
           <h2>Nuestros Servicios Destacados</h2>
 
-          {/* Aquí se dibuja las tarjetas dinámicamente usando un ciclo .map */}
-          <div className="services-grid">
-            {servicesList.map((service) => (
-              <ServiceCard
-                key={service.id}
-                title={service.title}
-                description={service.description}
-                image={service.image}
-                onSelectService={handleSelectService} // Se pasa función de prueba
-              />
-            ))}
-          </div>
+          {/* Control de estados de la API en la interfaz de usuario */}
+          {loading && <p className="loading-text">Cargando servicios dinámicos...</p>}
+          {error && <p className="error-text">Error: {error}</p>}
+
+          {/* Renderizado de las tarjetas solo si la carga fue exitosa */}
+          {!loading && !error && (
+            <div className="services-grid">
+              {servicesList.map((service) => (
+                <ServiceCard
+                  key={service.id}
+                  title={service.title}
+                  description={service.description}
+                  image={service.image}
+                  onSelectService={handleSelectService}
+                />
+              ))}
+            </div>
+          )}
         </section>
 
-        {/* Pequeña sección informativa sobre lo seleccionado */}
         {selectedService && (
           <div className="selection-indicator">
             <p>Servicio seleccionado actualmente: <strong>{selectedService}</strong></p>
           </div>
         )}
-        {/* Punto 2: Carrusel de Testimonios */}
+
         <TestimonialCarousel />
       </main>
     </div>
