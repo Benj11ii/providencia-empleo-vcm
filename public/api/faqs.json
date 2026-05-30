@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "question": "¿Qué es el Centro de Negocios Sercotec?",
+    "answer": "Es un espacio donde las micro y pequeñas empresas, así como los emprendedores, reciben asesoría técnica individual y sin costo de parte de mentores especializados para fortalecer sus capacidades y hacer crecer sus negocios."
+  },
+  {
+    "id": 2,
+    "question": "¿Quiénes pueden acceder a las asesorías y capacitaciones?",
+    "answer": "Cualquier persona natural o jurídica con una micro o pequeña empresa constituida, o emprendedores con una idea de negocio viable que pertenezcan al territorio de cobertura del Centro de Negocios."
+  },
+  {
+    "id": 3,
+    "question": "¿Tienen algún costo el acompañamiento técnico?",
+    "answer": "No. Todo el acompañamiento técnico, las asesorías personalizadas, los talleres de capacitación y la participación en ferias y eventos de networking son 100% gratuitos."
+  }
+]

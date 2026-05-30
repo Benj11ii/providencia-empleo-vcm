@@ -1,0 +1,82 @@
+.faq-section {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.faq-title {
+  font-size: 1.5rem;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.faq-subtitle {
+  font-size: 0.95rem;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.accordion {
+  border-top: 1px solid #e2e8f0;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+/* Efecto sutil de fondo cuando una pregunta está abierta */
+.accordion-item.active {
+  background-color: #f8fafc;
+}
+
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  transition: color 0.2s;
+}
+
+.accordion-header:hover {
+  color: #0284c7; /* Azul corporativo Sercotec */
+}
+
+.faq-icon {
+  font-size: 1.25rem;
+  color: #64748b;
+  font-weight: bold;
+}
+
+.accordion-item.active .faq-icon {
+  color: #0284c7;
+}
+
+.accordion-body {
+  padding: 0 10px 20px 10px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.faq-answer {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Animación sutil al abrir (Usabilidad) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

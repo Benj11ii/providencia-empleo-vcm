@@ -3,6 +3,8 @@ import './App.css';
 import ServiceCard from './components/ServiceCard/ServiceCard';
 import TestimonialCarousel from './components/TestimonialCarousel/TestimonialCarousel';
 import ContactForm from './components/ContactForm/ContactForm';
+import FaqAccordion from './components/FaqAccordion/FaqAccordion';
+import AboutSection from './components/AboutSection/AboutSection';
 
 function App() {
   const [selectedService, setSelectedService] = useState('');
@@ -72,6 +74,8 @@ function App() {
       </header>
 
       <main className="app-main">
+        {/* Punto 9: Sección Nosotros Dinámica */}
+        <AboutSection />
         <section className="services-section">
           <h2>Nuestros Servicios Destacados</h2>
 
@@ -94,7 +98,8 @@ function App() {
             </div>
           )}
         </section>
-
+          {/* Preguntas Frecuentes Dinámicas */}
+        <FaqAccordion />
         <ContactForm
           selectedService={selectedService}
           setSelectedService={setSelectedService}
