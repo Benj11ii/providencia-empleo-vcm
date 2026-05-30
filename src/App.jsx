@@ -1,122 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
+import ServiceCard from './components/ServiceCard/ServiceCard'; // Importamos el componente
+import TestimonialCarousel from './components/TestimonialCarousel/TestimonialCarousel'; // Se importa el carrusel
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Este estado guarda temporalmente el servicio que el usuario seleccione al hacerr clic
+  const [selectedService, setSelectedService] = useState('');
+
+  // Se simula una lista de servicios reales del Centro de Negocios de SERCOTEC
+  const servicesList = [
+    {
+      id: 1,
+      title: "Asesoría Técnica Individual",
+      description: "Acompañamiento personalizado y confidencial para diagnosticar y mejorar la gestión de tu micro o pequeña empresa.",
+      // Se usa imagen de prueba de internet para ver cómo luce
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=400"
+    },
+    {
+      id: 2,
+      title: "Capacitación Empresarial",
+      description: "Talleres prácticos sobre marketing digital, finanzas, contabilidad y uso de herramientas digitales para emprendedores.",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=400"
+    }
+  ];
+
+  // Función de prueba que se ejecuta cuando el usuario hace clic en "Contáctanos"
+  const handleSelectService = (serviceTitle) => {
+    setSelectedService(serviceTitle);
+    // Mostrar una alerta para comprobar que la tarjeta le envía el dato correcto al padre
+    alert(`¡Perfecto! Has seleccionado: "${serviceTitle}". En los siguientes pasos, este valor pre-llenará el formulario automáticamente.`);
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-container">
+      <header className="app-header">
+        <h1>Centro de Negocios Santiago de SERCOTEC</h1>
+        <p>Apoyo integral para el crecimiento de tu negocio</p>
+      </header>
 
-      <div className="ticks"></div>
+      <main className="app-main">
+        <section className="services-section">
+          <h2>Nuestros Servicios Destacados</h2>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          {/* Aquí se dibuja las tarjetas dinámicamente usando un ciclo .map */}
+          <div className="services-grid">
+            {servicesList.map((service) => (
+              <ServiceCard
+                key={service.id}
+                title={service.title}
+                description={service.description}
+                image={service.image}
+                onSelectService={handleSelectService} // Se pasa función de prueba
+              />
+            ))}
+          </div>
+        </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {/* Pequeña sección informativa sobre lo seleccionado */}
+        {selectedService && (
+          <div className="selection-indicator">
+            <p>Servicio seleccionado actualmente: <strong>{selectedService}</strong></p>
+          </div>
+        )}
+        {/* Punto 2: Carrusel de Testimonios */}
+        <TestimonialCarousel />
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

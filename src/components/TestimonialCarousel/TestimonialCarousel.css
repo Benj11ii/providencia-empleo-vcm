@@ -1,0 +1,119 @@
+.carousel-container {
+  background-color: #ffffff;
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.carousel-title {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 30px;
+}
+
+.carousel-view {
+  min-height: 180px; /* Evita que el diseño salte si un texto es más largo que otro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.testimonial-text {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.testimonial-author {
+  font-size: 1rem;
+  color: #0f172a;
+  margin: 0;
+}
+
+.testimonial-business {
+  font-size: 0.9rem;
+  color: #0284c7; /* Color celeste corporativo */
+  margin: 5px 0 0 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Controles responsivos */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap; /* Permite que en móviles los botones bajen si no caben */
+  gap: 15px;
+}
+
+.carousel-btn {
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.carousel-btn:hover {
+  background-color: #1e293b;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: #cbd5e1;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s;
+}
+
+.carousel-dot.active {
+  background-color: #0284c7;
+}
+
+/* Adaptación para pantallas móviles pequeñas (Media Query) */
+@media (max-width: 600px) {
+  .carousel-controls {
+    justify-content: center; /* Centra los botones y los dots */
+  }
+  
+  .carousel-btn {
+    width: 100%; /* Botones de ancho completo para facilitar el clic táctil en móviles (Usabilidad) */
+    order: 2;    /* Coloca los botones debajo */
+  }
+
+  .carousel-dots {
+    width: 100%;
+    justify-content: center;
+    order: 1;    /* Coloca los puntitos arriba de los botones en móvil */
+    margin-bottom: 10px;
+  }
+
+  .testimonial-text {
+    font-size: 1rem;
+  }
+}
