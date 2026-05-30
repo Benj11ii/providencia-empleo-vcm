@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'; // Importar useEffect para c
 import './App.css';
 import ServiceCard from './components/ServiceCard/ServiceCard';
 import TestimonialCarousel from './components/TestimonialCarousel/TestimonialCarousel';
+import ContactForm from './components/ContactForm/ContactForm';
 
 function App() {
   const [selectedService, setSelectedService] = useState('');
@@ -36,14 +37,13 @@ function App() {
 
   const handleSelectService = (serviceTitle) => {
     setSelectedService(serviceTitle);
-    alert(`Has seleccionado: "${serviceTitle}".`);
   };
 
   return (
     <div className="app-container">
       <header className="app-header">
         <h1>Centro de Negocios Santiago de SERCOTEC</h1>
-        <p>Apoyo integral para el crecimiento de tu negocio</p>
+        <p>Apoyo integral para el crecimiento de su negocio</p>
       </header>
 
       <main className="app-main">
@@ -70,11 +70,10 @@ function App() {
           )}
         </section>
 
-        {selectedService && (
-          <div className="selection-indicator">
-            <p>Servicio seleccionado actualmente: <strong>{selectedService}</strong></p>
-          </div>
-        )}
+      <ContactForm 
+        selectedService={selectedService} 
+        setSelectedService={setSelectedService} 
+      />
 
         <TestimonialCarousel />
       </main>
