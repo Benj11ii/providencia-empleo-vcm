@@ -185,8 +185,7 @@ WordPress REST API
 
 ## Entrega
 
-Para generar el archivo entregable, eliminar primero la carpeta `node_modules` (el evaluador ejecutará `npm install` por su cuenta), luego comprimir la carpeta del proyecto:
+Repositorio público en GitHub:  
+https://github.com/Benj11ii/providencia-empleo-vcm
 
-```
-Eval_U3A_NOMBRE_DEL_EQUIPO.zip
-```
+Para generar el archivo entregable, eliminar primero la carpeta `node_modules`...
