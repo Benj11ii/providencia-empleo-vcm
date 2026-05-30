@@ -5,6 +5,7 @@ import TestimonialCarousel from './components/TestimonialCarousel/TestimonialCar
 import ContactForm from './components/ContactForm/ContactForm';
 import FaqAccordion from './components/FaqAccordion/FaqAccordion';
 import AboutSection from './components/AboutSection/AboutSection';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const [selectedService, setSelectedService] = useState('');
@@ -67,16 +68,24 @@ function App() {
 
 
   return (
+    <div className="app-container" id="app-top">
+      {/* Menú de Navegación Fijo */}
+  <Navbar />
+  <header className="app-header"></header>
     <div className="app-container">
       <header className="app-header">
         <h1>Centro de Negocios Santiago de SERCOTEC</h1>
         <p>Apoyo integral para el crecimiento de su negocio</p>
       </header>
 
-      <main className="app-main">
-        {/* Punto 9: Sección Nosotros Dinámica */}
-        <AboutSection />
-        <section className="services-section">
+     <main className="app-main">
+        {/* 1. Se agrega un contenedor div con id "nosotros-section" para el scroll del menú */}
+        <div id="nosotros-section">
+          <AboutSection />
+        </div>
+
+        {/* 2. Añadido id="services-section" a su etiqueta de sección */}
+        <section className="services-section" id="services-section">
           <h2>Nuestros Servicios Destacados</h2>
 
           {/* Control de estados de la API en la interfaz de usuario */}
@@ -98,8 +107,11 @@ function App() {
             </div>
           )}
         </section>
-          {/* Preguntas Frecuentes Dinámicas */}
-        <FaqAccordion />
+
+        {/* 3. Se agrega un contenedor div con id "faq-section" para el scroll de las preguntas */}
+        <div id="faq-section">
+          <FaqAccordion />
+        </div>
         <ContactForm
           selectedService={selectedService}
           setSelectedService={setSelectedService}
@@ -107,6 +119,7 @@ function App() {
 
         <TestimonialCarousel />
       </main>
+    </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  padding-top: 70px;
 }
 
 .app-header {
@@ -57,4 +58,12 @@
   color: #0369a1;
   text-align: center;
   border-radius: 4px;
+}
+
+/* Espaciado para que el menú fijo superior de 70px no tape los títulos al deslizarse */
+#nosotros-section,
+#services-section,
+#faq-section,
+#contact-section {
+  scroll-margin-top: 90px; /* Deja 90px libres arriba (70px del menú + 20px de "aire" para que respire) */
 }
