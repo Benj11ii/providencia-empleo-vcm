@@ -6,38 +6,63 @@ import ContactForm from './components/ContactForm/ContactForm';
 
 function App() {
   const [selectedService, setSelectedService] = useState('');
-  
+
   // 1. Estado para almacenar los servicios que vendrán de la API
   const [servicesList, setServicesList] = useState([]);
-  
+
   // 2. Estados para el control de carga y posibles errores
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // 3. El Hook useEffect ejecuta la petición de forma automática al cargar la página
   useEffect(() => {
-    // Simular petición HTTP GET a endpoint de prueba
-    fetch('/api/services.json')
+    // Apuntamos a la API real de su WordPress local con el parámetro de unión ?_embed [3]
+    fetch('http://localhost/wordpress/wp-json/wp/v2/posts?_embed')
       .then((response) => {
-        // Si la respuesta no es exitosa (ej. error 404), lanzar un error
         if (!response.ok) {
-          throw new Error('No se pudieron cargar los servicios de la API.');
+          throw new Error('No se pudieron cargar los servicios desde WordPress.');
         }
-        return response.json(); // Convertir la respuesta a formato JSON
+        return response.json();
       })
       .then((data) => {
-        setServicesList(data); // Guardar los datos en estado
-        setLoading(false);     // Indicar que la carga terminó
+        // Mapear los datos de WordPress para adaptarlo a la forma que espera en tarjetas
+        const mappedServices = data.map((post) => {
+
+          // 1. Extraer la URL de la imagen destacada de forma segura
+          let imageUrl = 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=400'; // Imagen por defecto
+          if (
+            post._embedded &&
+            post._embedded['wp:featuredmedia'] &&
+            post._embedded['wp:featuredmedia'][0]
+          ) {
+            imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
+          }
+
+          // 2. Limpiar las etiquetas HTML <p> de la descripción con una expresión regular sencilla
+          const cleanDescription = post.content.rendered.replace(/<[^>]*>/g, '').trim();
+
+          // Retornar un objeto idéntico al que esperaba componente
+          return {
+            id: post.id,
+            title: post.title.rendered, // Título dinámico de WordPress
+            description: cleanDescription, // Descripción limpia
+            image: imageUrl // URL de la imagen destacada
+          };
+        });
+
+        setServicesList(mappedServices); // Guardamos la lista mapeada en el estado
+        setLoading(false);
       })
       .catch((err) => {
-        setError(err.message); // Si hay un error de red,se guarda
+        setError(err.message);
         setLoading(false);
       });
-  }, []); // El arreglo vacío [] asegura que la petición se haga una sola vez al montar el componente
+  }, []);
 
-  const handleSelectService = (serviceTitle) => {
+    const handleSelectService = (serviceTitle) => {
     setSelectedService(serviceTitle);
   };
+
 
   return (
     <div className="app-container">
@@ -70,10 +95,10 @@ function App() {
           )}
         </section>
 
-      <ContactForm 
-        selectedService={selectedService} 
-        setSelectedService={setSelectedService} 
-      />
+        <ContactForm
+          selectedService={selectedService}
+          setSelectedService={setSelectedService}
+        />
 
         <TestimonialCarousel />
       </main>
