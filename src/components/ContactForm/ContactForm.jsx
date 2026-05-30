@@ -84,9 +84,8 @@ const ContactForm = ({ selectedService, setSelectedService }) => {
 
   return (
     <div className="contact-form-container" id="contact-section">
-      <h2>Solicitud de Acompañamiento Sercotec</h2>
-      <p className="contact-subtitle">
-        Complete el formulario y un asesor se pondrá en contacto para programar su primera sesión.
+      <h2>Registro de Talento de Providencia</h2>
+<p className="contact-subtitle">Complete el formulario para que las empresas de la comuna puedan encontrar su perfil laboral de forma activa y transparente.
       </p>
 
       {isSubmitted ? (

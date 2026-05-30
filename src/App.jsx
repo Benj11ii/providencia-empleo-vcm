@@ -74,8 +74,8 @@ function App() {
   <header className="app-header"></header>
     <div className="app-container">
       <header className="app-header">
-        <h1>Centro de Negocios Santiago de SERCOTEC</h1>
-        <p>Apoyo integral para el crecimiento de su negocio</p>
+        <h1>Departamento de Empleo - Municipalidad de Providencia</h1>
+        <p>Innovando en la empleabilidad y la inclusión laboral local</p>
       </header>
 
      <main className="app-main">

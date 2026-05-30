@@ -24,7 +24,7 @@ const Navbar = () => {
     <nav className="navbar" aria-label="Navegación principal">
       <div className="navbar-container">
         <a href="#" className="navbar-logo" onClick={(e) => handleLinkClick(e, 'app-top')}>
-          SERCOTEC <span className="logo-accent">Santiago</span>
+          Providencia <span className="logo-accent">Empleo</span>
         </a>
         
         {/* Botón hamburguesa para celulares */}

@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "question": "¿Qué es el Centro de Negocios Sercotec?",
-    "answer": "Es un espacio donde las micro y pequeñas empresas, así como los emprendedores, reciben asesoría técnica individual y sin costo de parte de mentores especializados para fortalecer sus capacidades y hacer crecer sus negocios."
+    "question": "¿Qué es el modelo de Búsqueda Inversa de Providencia?",
+    "answer": "Es un modelo innovador de intermediación laboral donde son las empresas quienes proactivamente buscan el talento de Providencia a través de nuestra plataforma digital, garantizando total transparencia y no discriminación arbitraria."
   },
   {
     "id": 2,
-    "question": "¿Quiénes pueden acceder a las asesorías y capacitaciones?",
-    "answer": "Cualquier persona natural o jurídica con una micro o pequeña empresa constituida, o emprendedores con una idea de negocio viable que pertenezcan al territorio de cobertura del Centro de Negocios."
+    "question": "¿Quiénes pueden registrar su perfil laboral?",
+    "answer": "Cualquier persona residente o trabajadora de la comuna de Providencia que se encuentre en búsqueda activa de empleo, inserción inclusiva o reconversión laboral."
   },
   {
     "id": 3,
-    "question": "¿Tienen algún costo el acompañamiento técnico?",
-    "answer": "No. Todo el acompañamiento técnico, las asesorías personalizadas, los talleres de capacitación y la participación en ferias y eventos de networking son 100% gratuitos."
+    "question": "¿Cómo se garantiza la confidencialidad de mis datos?",
+    "answer": "Debido al posible manejo de datos personales y sensibles, contamos con un protocolo de seguridad estricto y un acuerdo de confidencialidad para resguardar toda la información de los usuarios bajo la normativa legal vigente."
   }
 ]
